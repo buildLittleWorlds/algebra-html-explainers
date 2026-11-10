@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Four ways to graph a quadratic</title>
+  <style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#1e293b;background:#f8fafc;font-synthesis:none}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0}button,input{font:inherit}button{cursor:pointer}
+    .wrap{max-width:1160px;margin:auto;padding:0 24px}header{background:#10243a;color:white;padding:56px 0 48px;position:relative;overflow:hidden}header:after{content:"";position:absolute;width:440px;height:440px;border:1px solid #ffffff20;border-radius:50%;right:-90px;top:-260px;box-shadow:0 0 0 70px #ffffff08,0 0 0 140px #ffffff06;pointer-events:none}
+    .eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:.76rem;font-weight:800;color:#65d4c4}.hero{max-width:770px;position:relative;z-index:1}h1{font-size:clamp(2.2rem,5vw,4.3rem);letter-spacing:-.045em;line-height:1.04;margin:12px 0 18px}header p{font-size:1.15rem;line-height:1.65;color:#d9e6f0;max-width:690px;margin:0}.hero-formula{display:inline-block;margin-top:24px;padding:10px 17px;border-radius:12px;background:#ffffff13;border:1px solid #ffffff33;font-size:1.18rem;font-weight:700;color:#fff}
+    nav{background:#fff;border-bottom:1px solid #dce5ee;position:sticky;top:0;z-index:10}nav .wrap{display:flex;gap:24px;align-items:center;overflow-x:auto;white-space:nowrap}nav a{color:#34495e;text-decoration:none;padding:16px 0;border-bottom:3px solid transparent;font-size:.91rem;font-weight:650}nav a:hover,nav a:focus-visible{color:#086c71;border-color:#0f8e8b}
+    main{padding-top:38px;padding-bottom:72px}section{scroll-margin-top:84px}h2{font-size:clamp(1.65rem,3vw,2.25rem);letter-spacing:-.035em;margin:0 0 12px;color:#142b3e}h3{font-size:1.17rem;margin:0 0 9px;color:#142b3e}p{line-height:1.65}strong{color:#152c3f}.lead{max-width:760px;color:#526477;margin-top:0}
+    .lab{background:white;border:1px solid #dce6ed;border-radius:22px;box-shadow:0 16px 44px #14314b0d;overflow:hidden;margin:24px 0 44px}.lab-top{padding:24px 28px;border-bottom:1px solid #e4ebf0;background:#fbfdfe}.lab-top h3{margin-bottom:4px}.lab-top p{margin:0;color:#5b6d7d}.controls{display:flex;flex-wrap:wrap;gap:14px;align-items:end;margin-top:20px}.controls label{font-size:.87rem;font-weight:750;color:#33485b;display:flex;flex-direction:column;gap:5px}.controls input{width:92px;height:43px;border:1px solid #bfcdd7;border-radius:9px;padding:7px 10px;background:white;color:#193044}.controls input:focus-visible,.method-tab:focus-visible,.preset:focus-visible,.reveal:focus-visible{outline:3px solid #18a99e;outline-offset:2px}.presets{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;align-items:center}.presets span{font-size:.81rem;color:#607184;font-weight:650;margin-right:4px}.preset{border:1px solid #bfd7d8;background:#f1faf9;color:#126c70;border-radius:999px;padding:7px 11px;font-size:.81rem;font-weight:700}.preset:hover{background:#dff3f0}.equation-line{font-size:1.2rem;font-weight:750;color:#0d6268;margin-top:17px;min-height:30px}.input-error{color:#b42318;font-size:.85rem;min-height:18px;margin:5px 0 0}
+    .method-tabs{display:flex;gap:5px;overflow-x:auto;padding:14px 22px 0;border-bottom:1px solid #e4ebf0}.method-tab{border:0;background:transparent;color:#506579;padding:12px 15px 13px;border-radius:9px 9px 0 0;border-bottom:3px solid transparent;white-space:nowrap;font-weight:750;font-size:.88rem}.method-tab[aria-selected="true"]{color:#087879;background:#e8f7f4;border-bottom-color:#087879}.method-tab:hover{background:#f1f7f8}
+    .lab-body{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.8fr);gap:0}.plot-area{padding:22px;background:#fff}.plot-frame{border:1px solid #dce7ed;border-radius:14px;background:#fcfefe;overflow:hidden}.plot-frame svg{display:block;width:100%;height:auto;min-height:350px}.plot-key{display:flex;gap:18px;flex-wrap:wrap;margin:12px 4px 0;font-size:.78rem;color:#607183}.plot-key span{display:inline-flex;gap:6px;align-items:center}.swatch{width:15px;height:3px;background:#087d82;display:inline-block;border-radius:3px}.swatch.dash{background:repeating-linear-gradient(90deg,#a383d8 0 5px,transparent 5px 8px)}.swatch.dot{width:9px;height:9px;border-radius:50%;background:#e18438}
+    .method-panel{padding:29px 26px;background:#f6fafb;border-left:1px solid #e4ebf0;min-height:470px}.method-panel h3{font-size:1.32rem}.method-panel p{margin:0 0 14px;color:#455c6d}.result{padding:12px 14px;border-left:4px solid #11898a;background:white;border-radius:0 9px 9px 0;margin:17px 0;line-height:1.55;font-weight:650}.result.warning{border-color:#ce8841}.step-list{padding-left:20px;margin:12px 0 0;color:#41566a;line-height:1.65}.step-list li{margin-bottom:10px}.mini-table{border-collapse:collapse;width:100%;font-size:.89rem;background:white;border-radius:8px;overflow:hidden}.mini-table th,.mini-table td{padding:7px 9px;border:1px solid #dce8ec;text-align:center}.mini-table th{background:#e8f2f3}.tip{font-size:.83rem;color:#5b7180!important;margin-top:17px!important}
+    .concept-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0 40px}.card{background:white;border:1px solid #dce6ed;border-radius:16px;padding:22px 23px}.badge{display:inline-block;background:#e4f3f1;color:#0e7175;border-radius:6px;padding:4px 8px;font-size:.73rem;font-weight:850;letter-spacing:.04em;text-transform:uppercase;margin-bottom:13px}.card p{margin:0;color:#4a5e70}.card .math{font-weight:750;color:#173c4d;margin:13px 0}.card small{color:#627584;line-height:1.5;display:block;margin-top:12px}
+    .rule{background:#e9f5f3;border:1px solid #c8e3df;border-radius:17px;padding:22px 26px;margin:25px 0 42px}.rule p{margin:5px 0;color:#385a61}.rule-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:17px}.rule-grid div{background:#fff;border-radius:10px;padding:13px 15px;line-height:1.5;font-size:.91rem}.worked{background:#fff;border:1px solid #dce6ed;border-radius:17px;padding:26px 30px;margin-top:22px}.worked ol{padding-left:22px;line-height:1.7}.worked li{margin-bottom:11px}.worked .answer{background:#f0f8f7;border-radius:10px;padding:14px 17px;font-weight:700;color:#21595b}.check{background:#152f44;color:#fff;border-radius:18px;padding:25px 30px;margin-top:38px}.check h2{color:white}.check p{color:#dbe8ed}.reveal{background:#70d5c6;border:0;border-radius:9px;padding:10px 16px;font-weight:800;color:#10364a}.check-answer{margin-top:15px;background:#ffffff14;padding:14px;border-radius:9px;line-height:1.6}footer{border-top:1px solid #dce5ed;color:#647789;padding:27px 0 45px;font-size:.85rem}
+    .function-intro{max-width:850px}.function-lab{background:#fff;border:1px solid #dce6ed;border-radius:22px;box-shadow:0 16px 44px #14314b0d;overflow:hidden;margin:24px 0 44px}.function-head{padding:24px 28px;background:#f6fafb;border-bottom:1px solid #e1eaee}.function-head h3{margin-bottom:5px}.function-head p{margin:0;color:#526779}.function-controls{display:flex;flex-wrap:wrap;gap:20px;align-items:end;margin-top:18px}.function-controls label{display:flex;flex-direction:column;gap:6px;color:#344c5d;font-size:.86rem;font-weight:750}.function-controls select{min-width:230px;max-width:100%;height:43px;border-radius:9px;border:1px solid #bfcdd7;background:#fff;color:#183245;padding:7px 10px}.function-controls input[type=range]{width:min(310px,72vw);accent-color:#d67929;margin:10px 0}.function-controls output{font-weight:850;color:#b05c19}.function-body{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(275px,.8fr)}.function-plot{padding:20px}.function-frame{border:1px solid #dce7ed;border-radius:14px;background:#fcfefe;overflow:hidden}.function-frame svg{display:block;width:100%;height:auto;touch-action:pan-y}.function-panel{background:#fff9f3;border-left:1px solid #f0dfcc;padding:26px 25px}.function-panel h3{font-size:1.3rem}.function-panel p{color:#4d6070}.function-status{background:white;border-left:4px solid #d88035;padding:12px 14px;border-radius:0 8px 8px 0;line-height:1.55;margin:15px 0}.function-verdict{border-radius:10px;padding:14px 15px;line-height:1.55;font-weight:650}.function-verdict.yes{background:#e5f6f0;color:#1e6259}.function-verdict.no{background:#fce9e8;color:#953f43}.function-explain{font-size:.91rem}.function-try{font-size:.83rem;color:#6d604f!important;border-top:1px solid #ead9c7;padding-top:13px}.function-note{background:#eff5f8;border-radius:12px;padding:16px 19px;margin:-19px 0 13px;line-height:1.6;color:#3f5969}.function-check{border:1px solid #d4e0e6;background:#fff;border-radius:12px;padding:14px 18px;margin:0 0 43px}.function-check summary{font-weight:750;cursor:pointer;color:#25596b}.function-check p{margin:12px 0 0;color:#4a6070}.function-controls select:focus-visible,.function-controls input:focus-visible{outline:3px solid #18a99e;outline-offset:2px}
+    @media(max-width:800px){.lab-body,.function-body{grid-template-columns:1fr}.method-panel,.function-panel{border-left:0;border-top:1px solid #e4ebf0;min-height:0}.concept-grid{grid-template-columns:1fr}.rule-grid{grid-template-columns:1fr}.plot-frame svg{min-height:0}.wrap{padding:0 17px}header{padding:43px 0}.lab-top,.function-head{padding:21px}.method-tabs{padding-left:12px}.plot-area,.function-plot{padding:14px}.method-panel,.function-panel{padding:24px}}
+    @media(max-width:480px){.controls input{width:82px}.method-tab{padding:11px;font-size:.82rem}.worked,.check{padding:22px}.plot-key{gap:10px}}
+  </style>
+</head>
+<body>
+<header><div class="wrap hero"><div class="eyebrow">Interactive algebra guide</div><h1>Four ways to graph a quadratic</h1><p>Every quadratic makes a parabola. The graph stays the same whether you build it from a table, locate its vertex, find its intercepts, or transform the parent curve. Each method simply reveals different useful points.</p><div class="hero-formula">y = ax² + bx + c <span style="font-size:.72em;font-weight:500;color:#c7e8e3">(a ≠ 0)</span></div></div></header>
+<nav aria-label="Page sections"><div class="wrap"><a href="#explore">Explore the graph</a><a href="#function-test">Function test</a><a href="#methods">Choose a method</a><a href="#worked">Worked example</a><a href="#check">Check understanding</a></div></nav>
+<main class="wrap">
+  <section id="explore"><h2>One curve, four routes</h2><p class="lead">Change the coefficients, then switch methods. Orange marks show the points that each method gives you. The teal curve is the complete graph.</p>
+    <div class="lab"><div class="lab-top"><h3>Graphing lab</h3><p>Enter coefficients in standard form, y = ax² + bx + c. Displayed coordinates are rounded to two decimal places when needed.</p><div class="controls"><label>a <input id="a" type="number" min="-5" max="5" step="0.25" value="1" aria-label="Coefficient a"></label><label>b <input id="b" type="number" min="-12" max="12" step="0.25" value="-4" aria-label="Coefficient b"></label><label>c <input id="c" type="number" min="-12" max="12" step="0.25" value="3" aria-label="Coefficient c"></label></div><div class="presets"><span>Try:</span><button class="preset" data-a="1" data-b="-4" data-c="3">Two x-intercepts</button><button class="preset" data-a="1" data-b="-4" data-c="4">Touches the x-axis</button><button class="preset" data-a="1" data-b="0" data-c="2">No x-intercepts</button><button class="preset" data-a="-1" data-b="2" data-c="3">Opens downward</button></div><div id="equation" class="equation-line" aria-live="polite"></div><div id="input-error" class="input-error" role="status"></div></div>
+      <div class="method-tabs" role="tablist" aria-label="Graphing method"><button class="method-tab" role="tab" id="tab-table" aria-controls="method-panel" aria-selected="true" data-method="table">1. Table of values</button><button class="method-tab" role="tab" id="tab-vertex" aria-controls="method-panel" aria-selected="false" data-method="vertex" tabindex="-1">2. Vertex &amp; symmetry</button><button class="method-tab" role="tab" id="tab-intercepts" aria-controls="method-panel" aria-selected="false" data-method="intercepts" tabindex="-1">3. Intercepts</button><button class="method-tab" role="tab" id="tab-transform" aria-controls="method-panel" aria-selected="false" data-method="transform" tabindex="-1">4. Transformations</button></div>
+      <div class="lab-body"><div class="plot-area"><div class="plot-frame"><svg id="graph" viewBox="0 0 760 500" role="img" aria-labelledby="graph-title graph-desc"><title id="graph-title">Graph of a quadratic function</title><desc id="graph-desc">An interactive parabola with method-specific points.</desc></svg></div><div class="plot-key"><span><i class="swatch"></i>quadratic</span><span><i class="swatch dot"></i>method points</span><span id="parent-key" hidden><i class="swatch dash"></i>parent y = x²</span></div></div><div id="method-panel" class="method-panel" role="tabpanel" aria-labelledby="tab-table" aria-live="polite"></div></div>
+    </div>
+  </section>
+  <section id="function-test"><h2>When is a graph a function?</h2><p class="lead function-intro">Every quadratic above is <strong>y as a function of x</strong>: each x in its domain gives exactly one y. Move the orange vertical line. If it hits a graph twice at any x, that graph is <strong>not</strong> a function of x. This is the <strong>vertical line test</strong>.</p>
+    <div class="function-lab"><div class="function-head"><h3>Try the vertical line test</h3><p>Choose a graph, then drag the orange line or use the slider. Watch the intersections change.</p><div class="function-controls"><label>Graph<select id="relation-example"><option value="parabola">Parabola: y = x²/4 − 1</option><option value="sideways">Sideways parabola: x = y² − 1</option><option value="circle">Circle: x² + y² = 6.25</option><option value="absolute">V shape: y = |x|/2</option><option value="vertical">Vertical line: x = 1</option><option value="horizontal">Horizontal line: y = 1.5</option></select></label><label>Move the vertical line: <output id="test-x-value" for="test-x">x = 0</output><input id="test-x" type="range" min="-4" max="4" step="0.1" value="0" aria-label="Vertical test line x-coordinate"></label></div></div>
+      <div class="function-body"><div class="function-plot"><div class="function-frame"><svg id="function-graph" viewBox="0 0 620 500" role="img" aria-labelledby="function-graph-title function-graph-desc"><title id="function-graph-title">Vertical line test graph</title><desc id="function-graph-desc">Move the test line to count intersections.</desc></svg></div><div class="plot-key"><span><i class="swatch"></i>chosen graph</span><span><i class="swatch" style="background:#da7b2d"></i>vertical test line</span><span><i class="swatch dot"></i>intersections</span></div></div><div id="function-result" class="function-panel" aria-live="polite"></div></div>
+    </div><p class="function-note"><strong>Two useful distinctions:</strong> A vertical line that misses a graph is fine; that x is simply outside the graph’s domain. Different x-values may also share one y-value. The test asks whether <em>one x-value</em> has more than one y-value.</p><details class="function-check"><summary>Quick challenge: A vertical line touches the circle once. Does that make the circle a function?</summary><p>No. A line at x = 2.5 touches it once, but a line at x = 0 meets it twice, at y = −2.5 and y = 2.5. One line with two intersections is enough to show it is not a function of x.</p></details>
+  </section>
+  <section id="methods"><h2>How to choose a starting point</h2><p class="lead">You can use more than one method. A quick graph often begins with the vertex, then adds intercepts or a few symmetric points.</p><div class="concept-grid">
+    <article class="card"><span class="badge">Method 1</span><h3>Make a table</h3><p>Pick x-values, substitute each into the equation, and plot the resulting (x, y) points. Choose values on both sides of the vertex so you see the U shape.</p><div class="math">x → ax² + bx + c → y</div><small>Useful for any quadratic; often the easiest first method. A table alone can miss the exact vertex if you choose poorly.</small></article>
+    <article class="card"><span class="badge">Method 2</span><h3>Find the vertex</h3><p>The vertex is the lowest or highest point. Its x-coordinate is h = −b/(2a); substitute h to get k. Draw the symmetry line x = h and reflect a known point across it.</p><div class="math">vertex (h, k), axis x = h</div><small>Useful when you need the maximum or minimum, and when the x-intercepts are awkward or absent.</small></article>
+    <article class="card"><span class="badge">Method 3</span><h3>Find the intercepts</h3><p>The y-intercept is (0, c). To find x-intercepts, solve ax² + bx + c = 0 by factoring or with the quadratic formula. The discriminant b² − 4ac tells how many real x-intercepts exist.</p><div class="math">x = (−b ± √(b² − 4ac))/(2a)</div><small>Useful when roots matter. If the discriminant is negative, combine the y-intercept with the vertex instead.</small></article>
+    <article class="card"><span class="badge">Method 4</span><h3>Transform the parent graph</h3><p>Rewrite the equation as y = a(x − h)² + k. Start with y = x², then shift h units horizontally, multiply heights by |a|, reflect over the x-axis if a is negative, and shift k units vertically.</p><div class="math">y = a(x − h)² + k</div><small>Useful when the equation is already in vertex form or when you want to see how coefficients change the curve.</small></article>
+  </div></section>
+  <section class="rule" aria-label="Shape rules"><h3>What changes the shape?</h3><p>The sign and size of <strong>a</strong> affect every method.</p><div class="rule-grid"><div><strong>a &gt; 0:</strong> the parabola opens up, so the vertex is a minimum.</div><div><strong>a &lt; 0:</strong> it opens down, so the vertex is a maximum.</div><div><strong>|a| &gt; 1:</strong> narrower than y = x²; <strong>0 &lt; |a| &lt; 1:</strong> wider.</div></div></section>
+  <section id="worked"><h2>A complete graph, step by step</h2><p class="lead">Use y = x² − 4x + 3. Several methods confirm the same picture.</p><div class="worked"><ol><li><strong>Vertex:</strong> h = −(−4)/(2·1) = 2. Then k = 2² − 4(2) + 3 = −1. Plot <strong>(2, −1)</strong> and draw the axis x = 2.</li><li><strong>Intercepts:</strong> x² − 4x + 3 = (x − 1)(x − 3), so plot <strong>(1, 0)</strong> and <strong>(3, 0)</strong>. With x = 0, plot the y-intercept <strong>(0, 3)</strong>.</li><li><strong>Symmetry:</strong> (0, 3) is two units left of x = 2, so <strong>(4, 3)</strong> is also on the graph. Draw a smooth U-shaped curve through these points.</li><li><strong>Transformation check:</strong> complete the square: x² − 4x + 3 = <strong>(x − 2)² − 1</strong>. The parent curve y = x² moves right 2 and down 1.</li></ol><div class="answer">Key points: (2, −1), (1, 0), (3, 0), (0, 3), (4, 3). The parabola opens upward.</div></div></section>
+  <section id="check" class="check"><h2>Quick check</h2><p>Suppose a quadratic has vertex (3, −2) and contains the point (1, 6). Which other point must be on its graph?</p><button class="reveal" id="reveal" aria-expanded="false" aria-controls="check-answer">Reveal answer</button><div class="check-answer" id="check-answer" hidden><strong>(5, 6).</strong> The axis of symmetry is x = 3. The point (1, 6) is two units to its left, so a matching point is two units to its right.</div></section>
+</main><footer><div class="wrap">A quadratic function has a ≠ 0. This guide graphs real x and y values.</div></footer>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const inputs = ['a','b','c'].map($);
+  const tabs = [...document.querySelectorAll('.method-tab')];
+  let method = 'table';
+  let last = {a:1,b:-4,c:3};
+  const fmt = n => {
+    if (Math.abs(n) < 1e-9) return '0';
+    const rounded = Math.round(n*100)/100;
+    return String(rounded).replace('-', '−');
+  };
+  const pair = (x,y) => `(${fmt(x)}, ${fmt(y)})`;
+  const signed = (n, symbol) => `${n < 0 ? ' − ' : ' + '}${Math.abs(n) === 1 && symbol ? '' : fmt(Math.abs(n))}${symbol}`;
+  function standard({a,b,c}) { return `y = ${a===-1?'−':a===1?'':fmt(a)}x²${b===0?'':signed(b,'x')}${c===0?'':signed(c,'')}`; }
+  function vertexForm({a},h,k) { return `y = ${a===-1?'−':a===1?'':fmt(a)}(x ${h<0?'+':'−'} ${fmt(Math.abs(h))})² ${k<0?'−':'+'} ${fmt(Math.abs(k))}`; }
+  const f = (q,x) => q.a*x*x+q.b*x+q.c;
+  function read() {
+    const vals=inputs.map(el=>Number(el.value));
+    if(inputs.some(el=>el.value.trim()==='') || vals.some(v=>!Number.isFinite(v)) || vals[0]===0 || Math.abs(vals[0])>5 || Math.abs(vals[1])>12 || Math.abs(vals[2])>12){
+      $('input-error').textContent='Use −5 ≤ a ≤ 5 (with a ≠ 0), and −12 ≤ b, c ≤ 12.';
+      return null;
+    }
+    $('input-error').textContent='';
+    return {a:vals[0],b:vals[1],c:vals[2]};
+  }
+  function tickStep(span){let rough=span/9; let power=Math.pow(10,Math.floor(Math.log10(rough)));let multiple=[1,2,5,10].find(m=>m*power>=rough);return multiple*power;}
+  function draw(q,h,k,D){
+    const svg=$('graph');
+    const P={l:63,r:24,t:22,b:48}, W=760,H=500, iw=W-P.l-P.r, ih=H-P.t-P.b;
+    const rootSpan=Math.max(3,Math.sqrt(Math.abs(14/q.a)));
+    let xMin=Math.min(h-rootSpan,0,-2)-.65, xMax=Math.max(h+rootSpan,0,2)+.65;
+    let ySamples=[f(q,xMin),f(q,xMax),k,0,q.c,4];
+    let yMin=Math.min(...ySamples),yMax=Math.max(...ySamples);
+    const yPad=Math.max(1.2,(yMax-yMin)*.13);yMin-=yPad;yMax+=yPad;
+    if(yMax-yMin<4){yMin-=2;yMax+=2;}
+    const X=x=>P.l+(x-xMin)/(xMax-xMin)*iw,Y=y=>P.t+(yMax-y)/(yMax-yMin)*ih;
+    const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+    let html=`<defs><clipPath id="plot-clip"><rect x="${P.l}" y="${P.t}" width="${iw}" height="${ih}"/></clipPath></defs><rect width="760" height="500" fill="#fcfefe"/>`;
+    const xStep=tickStep(xMax-xMin),yStep=tickStep(yMax-yMin);
+    const x0=X(0),y0=Y(0);
+    for(let x=Math.ceil(xMin/xStep)*xStep;x<=xMax+1e-9;x+=xStep){let px=X(x);html+=`<line x1="${px}" y1="${P.t}" x2="${px}" y2="${H-P.b}" stroke="#e4ecef" stroke-width="1"/><text x="${px}" y="${H-P.b+19}" text-anchor="middle" fill="#607587" font-size="13">${esc(fmt(x))}</text>`;}
+    for(let y=Math.ceil(yMin/yStep)*yStep;y<=yMax+1e-9;y+=yStep){let py=Y(y);html+=`<line x1="${P.l}" y1="${py}" x2="${W-P.r}" y2="${py}" stroke="#e4ecef" stroke-width="1"/><text x="${P.l-10}" y="${py+4}" text-anchor="end" fill="#607587" font-size="13">${esc(fmt(y))}</text>`;}
+    if(x0>=P.l&&x0<=W-P.r)html+=`<line x1="${x0}" y1="${P.t}" x2="${x0}" y2="${H-P.b}" stroke="#8ca1ad" stroke-width="1.7"/>`;
+    if(y0>=P.t&&y0<=H-P.b)html+=`<line x1="${P.l}" y1="${y0}" x2="${W-P.r}" y2="${y0}" stroke="#8ca1ad" stroke-width="1.7"/>`;
+    html+=`<text x="${W-P.r-2}" y="${H-P.b+34}" text-anchor="end" font-weight="700" fill="#314b5c" font-size="16">x</text><text x="${P.l-42}" y="${P.t+9}" font-weight="700" fill="#314b5c" font-size="16">y</text>`;
+    if(method==='vertex'||method==='intercepts'||method==='transform')html+=`<line x1="${X(h)}" y1="${P.t}" x2="${X(h)}" y2="${H-P.b}" stroke="#dc9b5a" stroke-dasharray="6 6" stroke-width="1.8" clip-path="url(#plot-clip)"/>`;
+    const pathFor=g=>{let d='';for(let i=0;i<=420;i++){let x=xMin+(xMax-xMin)*i/420;d+=(i?'L':'M')+X(x).toFixed(2)+','+Y(g(x)).toFixed(2);}return d;};
+    if(method==='transform')html+=`<path d="${pathFor(x=>x*x)}" fill="none" stroke="#a383d8" stroke-width="2.5" stroke-dasharray="7 6" clip-path="url(#plot-clip)"/>`;
+    html+=`<path d="${pathFor(x=>f(q,x))}" fill="none" stroke="#087d82" stroke-width="4" stroke-linecap="round" clip-path="url(#plot-clip)"/>`;
+    let points=[];
+    if(method==='table')points=[-2,-1,0,1,2].map(d=>[h+d,f(q,h+d)]);
+    if(method==='vertex')points=[[h,k],[0,q.c],[2*h,q.c]];
+    if(method==='intercepts'){points=[[0,q.c],[h,k]];if(D>=-1e-9){let sq=Math.sqrt(Math.max(0,D));points.push([(-q.b-sq)/(2*q.a),0]);if(sq>1e-9)points.push([(-q.b+sq)/(2*q.a),0]);}}
+    if(method==='transform')points=[[h,k],[h-1,k+q.a],[h+1,k+q.a]];
+    let unique=[];for(let [x,y] of points)if(!unique.some(p=>Math.abs(p[0]-x)<1e-8&&Math.abs(p[1]-y)<1e-8))unique.push([x,y]);
+    for(let [x,y] of unique){let px=X(x),py=Y(y);if(px<P.l-2||px>W-P.r+2||py<P.t-2||py>H-P.b+2)continue;html+=`<circle cx="${px}" cy="${py}" r="6" fill="#e18438" stroke="white" stroke-width="2"/>`;}
+    svg.innerHTML=`<title id="graph-title">Graph of ${esc(standard(q))}</title><desc id="graph-desc">${esc(method)} method. Vertex ${esc(pair(h,k))}. ${unique.length} highlighted point${unique.length===1?'':'s'}.</desc>`+html;
+    $('parent-key').hidden=method!=='transform';
+  }
+  function panel(q,h,k,D){
+    const p=$('method-panel'),vf=vertexForm(q,h,k),axis=`x = ${fmt(h)}`,base=`<div class="result">Vertex ${pair(h,k)} · axis of symmetry ${axis}</div>`;
+    if(method==='table'){
+      let xs=[-2,-1,0,1,2].map(d=>h+d);
+      p.innerHTML=`<h3>Make a table of values</h3><p>Start at the vertex's x-value, then choose two x-values on each side. Substitute each into ${standard(q)}.</p><table class="mini-table"><thead><tr><th scope="col">x</th>${xs.map(x=>`<th scope="col">${fmt(x)}</th>`).join('')}</tr></thead><tbody><tr><th scope="row">y</th>${xs.map(x=>`<td>${fmt(f(q,x))}</td>`).join('')}</tr></tbody></table><div class="result">Plot these five points, then connect them with a smooth parabola.</div><p class="tip">Equal distances left and right of the vertex give equal y-values.</p>`;
+    } else if(method==='vertex'){
+      p.innerHTML=`<h3>Use the vertex and symmetry</h3><ol class="step-list"><li>Compute h = −b/(2a) = ${fmt(h)}.</li><li>Substitute h into the equation: k = ${fmt(k)}.</li><li>Plot the vertex and draw the vertical axis ${axis}.</li><li>The y-intercept is ${pair(0,q.c)}. Reflect it across the axis to get ${pair(2*h,q.c)}.</li></ol>${base}<p class="tip">The vertex is a ${q.a>0?'minimum':'maximum'} because a is ${q.a>0?'positive':'negative'}.</p>`;
+    } else if(method==='intercepts'){
+      let roots='';
+      if(D>1e-9){let s=Math.sqrt(D),r1=(-q.b-s)/(2*q.a),r2=(-q.b+s)/(2*q.a);roots=`Two x-intercepts: ${pair(r1,0)} and ${pair(r2,0)}.`;}
+      else if(Math.abs(D)<=1e-9){roots=`One x-intercept: ${pair(h,0)}. The curve touches the x-axis at its vertex.`;}
+      else {roots='No real x-intercepts: this curve never crosses the x-axis. Use its vertex and y-intercept to graph it.';}
+      p.innerHTML=`<h3>Find the intercepts</h3><p>Set x = 0 for the y-intercept: <strong>${pair(0,q.c)}</strong>. Set y = 0 for the x-intercepts.</p><ol class="step-list"><li>Compute the discriminant: D = b² − 4ac = <strong>${fmt(D)}</strong>.</li><li>${D>=-1e-9?'Solve with x = (−b ± √D)/(2a), or factor if possible.':'Because D < 0, the quadratic formula has no real solutions.'}</li></ol><div class="result ${D<0?'warning':''}">${roots}</div><p class="tip">${D<0?'The vertex and y-intercept still locate the curve.':'The vertex helps you shape the curve between or near the intercepts.'}</p>`;
+    } else {
+      const horizontal=Math.abs(h)<1e-9?'Make no horizontal shift.':`Shift ${fmt(Math.abs(h))} unit${Math.abs(h)===1?'':'s'} ${h<0?'left':'right'}.`;
+      const vertical=Math.abs(k)<1e-9?'Make no vertical shift.':`Shift ${fmt(Math.abs(k))} unit${Math.abs(k)===1?'':'s'} ${k<0?'down':'up'}.`;
+      p.innerHTML=`<h3>Transform y = x²</h3><p>Rewrite the quadratic in vertex form by completing the square:</p><div class="result">${vf}</div><ol class="step-list"><li>Start with the dashed parent graph y = x².</li><li>${horizontal} ${vertical}</li><li>${q.a<0?'Reflect across the x-axis. ':'Keep it opening upward. '}Multiply every height from the vertex by |a| = ${fmt(Math.abs(q.a))}.</li></ol>${base}<p class="tip">The orange points one unit to either side of the vertex are |a| units ${q.a>0?'above':'below'} it.</p>`;
+    }
+    p.setAttribute('aria-labelledby','tab-'+method);
+  }
+  function render(){const q=read();if(!q)return;last=q;const h=-q.b/(2*q.a),k=f(q,h),D=q.b*q.b-4*q.a*q.c;$('equation').textContent=standard(q);draw(q,h,k,D);panel(q,h,k,D);}
+  inputs.forEach(el=>el.addEventListener('input',render));
+  document.querySelectorAll('.preset').forEach(btn=>btn.addEventListener('click',()=>{inputs.forEach((el,i)=>el.value=btn.dataset[['a','b','c'][i]]);render();}));
+  function select(m,focus=false){method=m;tabs.forEach(t=>{let active=t.dataset.method===m;t.setAttribute('aria-selected',String(active));t.tabIndex=active?0:-1;if(active&&focus)t.focus();});render();}
+  tabs.forEach((t,i)=>{t.addEventListener('click',()=>select(t.dataset.method));t.addEventListener('keydown',e=>{let next;if(e.key==='ArrowRight')next=(i+1)%tabs.length;if(e.key==='ArrowLeft')next=(i+tabs.length-1)%tabs.length;if(e.key==='Home')next=0;if(e.key==='End')next=tabs.length-1;if(next!==undefined){e.preventDefault();select(tabs[next].dataset.method,true);}});});
+  $('reveal').addEventListener('click',()=>{let answer=$('check-answer');answer.hidden=!answer.hidden;$('reveal').setAttribute('aria-expanded',String(!answer.hidden));$('reveal').textContent=answer.hidden?'Reveal answer':'Hide answer';});
+  render();
+})();
+(() => {
+  const svg=document.getElementById('function-graph');
+  const select=document.getElementById('relation-example');
+  const slider=document.getElementById('test-x');
+  const readout=document.getElementById('test-x-value');
+  const result=document.getElementById('function-result');
+  const examples={
+    parabola:{name:'Parabola',isFunction:true,initial:0,formula:'y = x²/4 − 1',hint:'Move across the U shape. Even though a horizontal line can hit it twice, each vertical line hits once.'},
+    sideways:{name:'Sideways parabola',isFunction:false,initial:0,formula:'x = y² − 1',witness:0,hint:'Try x = −1, where the two branches meet, then x = 0, where they separate.'},
+    circle:{name:'Circle',isFunction:false,initial:0,formula:'x² + y² = 6.25',witness:0,hint:'Try x = 3 (no hits), x = 2.5 (one hit), and x = 0 (two hits).'},
+    absolute:{name:'V shape',isFunction:true,initial:0,formula:'y = |x|/2',hint:'At x = 0 the two arms meet in one point. That still counts as one output.'},
+    vertical:{name:'Vertical line',isFunction:false,initial:1,formula:'x = 1',witness:1,hint:'Set x = 1. Every y-value on this line has the same input x.'},
+    horizontal:{name:'Horizontal line',isFunction:true,initial:0,formula:'y = 1.5',hint:'Many different x-values all give y = 1.5. That is allowed for a function.'}
+  };
+  const fmt=n=>{const v=Math.round(n*100)/100;return (Math.abs(v)<1e-9?0:v).toString().replace('-', '−');};
+  const cleanX=()=>Math.max(-4,Math.min(4,Number(slider.value)));
+  function hits(kind,x){
+    const eps=1e-8;
+    if(kind==='parabola')return [x*x/4-1];
+    if(kind==='absolute')return [Math.abs(x)/2];
+    if(kind==='horizontal')return [1.5];
+    if(kind==='vertical')return Math.abs(x-1)<eps?null:[];
+    if(kind==='sideways'){
+      if(x< -1-eps)return [];
+      if(Math.abs(x+1)<eps)return [0];
+      const y=Math.sqrt(x+1);return [-y,y];
+    }
+    const r=2.5;
+    if(Math.abs(x)>r+eps)return [];
+    if(Math.abs(Math.abs(x)-r)<eps)return [0];
+    const y=Math.sqrt(r*r-x*x);return [-y,y];
+  }
+  function graph(kind,x,ys){
+    const W=620,H=500,L=60,R=40,T=34,B=43,iw=W-L-R,ih=H-T-B;
+    const X=v=>L+(v+4)/8*iw;
+    const Y=v=>T+(3.25-v)/6.5*ih;
+    let html=`<defs><clipPath id="function-clip"><rect x="${L}" y="${T}" width="${iw}" height="${ih}"/></clipPath></defs><rect width="620" height="500" fill="#fcfefe"/>`;
+    for(let v=-4;v<=4;v++)html+=`<line x1="${X(v)}" y1="${T}" x2="${X(v)}" y2="${H-B}" stroke="#e3ecef"/><text x="${X(v)}" y="${H-B+20}" text-anchor="middle" fill="#5b7283" font-size="13">${v}</text>`;
+    for(let v=-3;v<=3;v++)html+=`<line x1="${L}" y1="${Y(v)}" x2="${W-R}" y2="${Y(v)}" stroke="#e3ecef"/><text x="${L-12}" y="${Y(v)+5}" text-anchor="end" fill="#5b7283" font-size="13">${v}</text>`;
+    html+=`<line x1="${X(0)}" y1="${T}" x2="${X(0)}" y2="${H-B}" stroke="#849baa" stroke-width="1.6"/><line x1="${L}" y1="${Y(0)}" x2="${W-R}" y2="${Y(0)}" stroke="#849baa" stroke-width="1.6"/>`;
+    html+=`<text x="${W-R-2}" y="${H-B+36}" text-anchor="end" font-size="16" font-weight="700" fill="#29495b">x</text><text x="${L-37}" y="${T+10}" font-size="16" font-weight="700" fill="#29495b">y</text>`;
+    const xPath=fn=>{let d='';for(let i=0;i<=400;i++){let v=-4+8*i/400;d+=(i?'L':'M')+X(v).toFixed(2)+','+Y(fn(v)).toFixed(2);}return d;};
+    let path='';
+    if(kind==='parabola')path=xPath(v=>v*v/4-1);
+    if(kind==='absolute')path=xPath(v=>Math.abs(v)/2);
+    if(kind==='horizontal')path=`M${X(-4)},${Y(1.5)}L${X(4)},${Y(1.5)}`;
+    if(kind==='vertical')path=`M${X(1)},${Y(-3.25)}L${X(1)},${Y(3.25)}`;
+    if(kind==='sideways'){for(let i=0;i<=400;i++){let y=-Math.sqrt(5)+2*Math.sqrt(5)*i/400;path+=(i?'L':'M')+X(y*y-1).toFixed(2)+','+Y(y).toFixed(2);}}
+    if(kind==='circle'){for(let i=0;i<=400;i++){let t=2*Math.PI*i/400;path+=(i?'L':'M')+X(2.5*Math.cos(t)).toFixed(2)+','+Y(2.5*Math.sin(t)).toFixed(2);}}
+    html+=`<path d="${path}" fill="none" stroke="#087d82" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" clip-path="url(#function-clip)"/>`;
+    html+=`<line x1="${X(x)}" y1="${T}" x2="${X(x)}" y2="${H-B}" stroke="#df8435" stroke-width="${kind==='vertical'&&ys===null?10:3}" stroke-dasharray="7 6" opacity="${kind==='vertical'&&ys===null?0.65:1}"/>`;
+    if(ys===null){
+      for(const y of [-2,0,2])html+=`<circle cx="${X(x)}" cy="${Y(y)}" r="6" fill="#e18438" stroke="white" stroke-width="2"/>`;
+    }else for(const y of ys)html+=`<circle cx="${X(x)}" cy="${Y(y)}" r="7" fill="#e18438" stroke="white" stroke-width="2"/>`;
+    html+=`<text x="${Math.min(W-R-7,Math.max(L+7,X(x)+10))}" y="${T+20}" fill="#a65212" font-weight="800" font-size="15">x = ${fmt(x)}</text>`;
+    svg.innerHTML=`<title id="function-graph-title">${examples[kind].name} with a vertical test line at x = ${fmt(x)}</title><desc id="function-graph-desc">${ys===null?'Infinitely many intersections':ys.length+' intersection'+(ys.length===1?'':'s')} at this x-coordinate.</desc>`+html;
+  }
+  function render(){
+    const kind=select.value in examples?select.value:'parabola';
+    const ex=examples[kind],x=cleanX(),ys=hits(kind,x);
+    readout.textContent=`x = ${fmt(x)}`;
+    graph(kind,x,ys);
+    let count,detail;
+    if(ys===null){count='infinitely many intersections';detail='The graph and test line overlap. The three orange dots are only examples; every point on the vertical line is an intersection.';}
+    else if(ys.length===0){count='no intersections';detail='There is no point on this graph at this x-value.';}
+    else if(ys.length===1){count='one intersection';detail=`The only output here is y = ${fmt(ys[0])}.`;}
+    else{count='two intersections';detail=`This one input gives y = ${fmt(ys[0])} and y = ${fmt(ys[1])}.`;}
+    const currentProves=ys===null||ys.length>1;
+    const verdict=ex.isFunction
+      ?'Yes. This graph is a function of x: every vertical line meets it at most once.'
+      :currentProves
+        ?'No. This graph is not a function of x. The current vertical line proves it.'
+        :`No. This graph is not a function of x. This line alone does not show why; move to x = ${fmt(ex.witness)} to find multiple outputs.`;
+    result.innerHTML=`<h3>${ex.name}</h3><p><strong>${ex.formula}</strong></p><div class="function-status">At <strong>x = ${fmt(x)}</strong>: <strong>${count}</strong>.<br>${detail}</div><div class="function-verdict ${ex.isFunction?'yes':'no'}">${verdict}</div><p class="function-try"><strong>Try this:</strong> ${ex.hint}</p>`;
+  }
+  select.addEventListener('change',()=>{slider.value=examples[select.value].initial;render();});
+  slider.addEventListener('input',render);
+  let dragging=false;
+  function pointerToX(e){const rect=svg.getBoundingClientRect();const px=(e.clientX-rect.left)*620/rect.width;return Math.max(-4,Math.min(4,Math.round((-4+(px-60)/520*8)*10)/10));}
+  svg.addEventListener('pointerdown',e=>{dragging=true;if(svg.setPointerCapture)svg.setPointerCapture(e.pointerId);slider.value=String(pointerToX(e));render();});
+  svg.addEventListener('pointermove',e=>{if(dragging){slider.value=String(pointerToX(e));render();}});
+  svg.addEventListener('pointerup',()=>{dragging=false;});
+  svg.addEventListener('pointercancel',()=>{dragging=false;});
+  render();
+})();
+</script>
+</body>
+</html>
