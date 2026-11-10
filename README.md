@@ -4,7 +4,7 @@ Interactive, self-contained algebra lessons that work in a browser. The first le
 
 ## View the lessons
 
-Open `index.html` directly, or use the GitHub Pages site linked in this repository's About section.
+Visit the [live algebra explainer](https://buildlittleworlds.github.io/algebra-html-explainers/), or open `index.html` directly on your computer.
 
 ## Add another explainer
 
